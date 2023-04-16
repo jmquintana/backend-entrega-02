@@ -29,13 +29,6 @@ const environment = async () => {
 	mongoose.connect(
 		`mongodb+srv://${DB_USER}:${DB_PASSWORD}@codercluster.tgft5r9.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
 	);
-
-	const products = await productModel.paginate(
-		{ category: "Blue" },
-		{ limit: 5, page: 1 }
-	);
-
-	console.log(products);
 };
 
 environment();

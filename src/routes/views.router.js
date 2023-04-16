@@ -6,12 +6,37 @@ import { productModel } from "../models/products.model.js";
 const router = Router();
 
 router.get("/", async (req, res) => {
-	const products = await productModel.find().lean();
-	res.render("home", { products });
+	const { page = 1 } = req.query;
+	const {
+		docs: products,
+		hasPrevPage,
+		hasNextPage,
+		prevPage,
+		nextPage,
+		totalDocs,
+		totalPages,
+	} = await productModel.paginate(
+		{},
+		{
+			page,
+			limit: 5,
+			lean: true,
+		}
+	);
+
+	return res.render("products", {
+		products,
+		page,
+		hasPrevPage,
+		hasNextPage,
+		prevPage,
+		nextPage,
+		totalDocs,
+		totalPages,
+	});
 });
 
 router.get("/realtimeproducts", async (req, res) => {
-	// const products = await productManager.getProducts();
 	const products = await productModel.find().lean();
 	res.render("realTimeProducts", { products });
 });

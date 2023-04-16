@@ -11,10 +11,17 @@ const router = Router();
 
 router.get("/", async (req, res) => {
 	try {
-		let products = await productModel.find();
-		let limit = parseInt(req.query.limit);
-		let limitedProducts = limit ? products.slice(0, limit) : products;
-		return res.send({ status: "Success", payload: limitedProducts });
+		let { limit, page, category, status, sort } = req.query;
+		limit = parseInt(limit) || 5;
+		page = parseInt(page) || 1;
+		let products = await productModel.paginate(
+			{},
+			{
+				limit,
+				page,
+			}
+		);
+		return res.send({ status: "Success", payload: products });
 	} catch (error) {
 		console.log(error);
 	}
