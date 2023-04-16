@@ -1,13 +1,23 @@
-import { cartModel } from "../models/carts.model.js";
+import { cartsModel } from "../models/carts.model.js";
 import { productModel } from "../models/products.model.js";
 import { ObjectId } from "mongodb";
 
 export default class CartManager {
 	constructor() {}
+
 	getCarts = async () => {
 		try {
-			const carts = await cartModel.paginate();
+			const carts = await cartsModel.find();
 			return carts;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	addCart = async (cart) => {
+		try {
+			const createdCart = cartsModel.create(cart);
+			return createdCart;
 		} catch (error) {
 			console.log(error);
 		}
@@ -15,7 +25,9 @@ export default class CartManager {
 
 	getCartById = async (cartId) => {
 		try {
-			const cart = await cartModel.paginate({ _id: new ObjectId(cartId) });
+			const cart = await cartsModel
+				.findOne({ _id: new ObjectId(cartId) })
+				.populate("products");
 			return cart;
 		} catch (error) {
 			console.log(error);
@@ -24,22 +36,12 @@ export default class CartManager {
 
 	addProductToCart = async (cartId, productId, quantity) => {
 		try {
-			const product = await productModel.findOne({ _id: ObjectId(productId) });
-			if (!product) {
-				throw new Error("Product not found");
-			}
-			if (!cart) {
-				cart = await cartModel.create({ products: [] });
-			}
-			const cart = await cartModel.findOne({ _id: ObjectId(cartId) });
-			const productInCart = cart.products.find(
-				(p) => p.productId.toString() === productId.toString()
+			const updatedCart = await cartsModel.updateOne(
+				{ _id: cartId },
+				{ $push: { products: [{ product: productId, quantity }] } }
 			);
-			if (productInCart) {
-				productInCart.quantity += quantity;
-			} else {
-				cart.products.push({ productId, quantity });
-			}
+
+			return updatedCart;
 		} catch (error) {
 			console.log(error);
 		}

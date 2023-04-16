@@ -2,6 +2,7 @@ import { productModel } from "../models/products.model.js";
 
 export default class ProductManager {
 	constructor() {}
+
 	getProducts = async () => {
 		try {
 			const products = await productModel.find();
