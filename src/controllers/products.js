@@ -1,4 +1,4 @@
-import { productModel } from "../models/products.model";
+import { productModel } from "../models/products.model.js";
 
 export default class ProductManager {
 	constructor() {}
@@ -13,8 +13,23 @@ export default class ProductManager {
 
 	addProduct = async (product) => {
 		try {
+			const result = await productModel.create(product);
+			return result;
 		} catch (error) {
 			console.log(error);
 		}
 	};
+
+	getProductById = async (productId) => {
+		try {
+			const result = await productModel.find({ _id: productId });
+			return result;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	updateProduct = async (productId, product) => {};
+
+	deleteProduct = async (productId) => {};
 }
