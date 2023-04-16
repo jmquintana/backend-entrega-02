@@ -6,7 +6,7 @@ import { productModel } from "../models/products.model.js";
 const router = Router();
 
 router.get("/", async (req, res) => {
-	const { page = 1, limit = 5, sort = "desc" } = req.query;
+	const { page = 1, limit = 5 } = req.query;
 	const {
 		docs: products,
 		hasPrevPage,
@@ -21,7 +21,6 @@ router.get("/", async (req, res) => {
 			page,
 			limit,
 			lean: true,
-			sort: { createdAt: sort },
 		}
 	);
 

@@ -20,7 +20,6 @@ router.get("/", async (req, res) => {
 				limit,
 				page,
 				lean: true,
-				sort: { createdAt: sort },
 			}
 		);
 		return res.send({ status: "Success", payload: products });

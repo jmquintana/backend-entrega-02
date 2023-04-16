@@ -10,6 +10,11 @@ router.post("/", async (req, res) => {
 	res.send({ status: "Cart added", result: result });
 });
 
+router.get("/", async (req, res) => {
+	const result = await cartManager.getCarts();
+	res.send({ status: "Success", result: result });
+});
+
 router.get("/:cid", async (req, res) => {
 	let cartId = parseInt(req.params.cid);
 

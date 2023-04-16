@@ -6,12 +6,22 @@ export default class CartManager {
 	constructor() {}
 	getCarts = async () => {
 		try {
-			const carts = await cartModel.find();
+			const carts = await cartModel.paginate();
 			return carts;
 		} catch (error) {
 			console.log(error);
 		}
 	};
+
+	getCartById = async (cartId) => {
+		try {
+			const cart = await cartModel.paginate({ _id: new ObjectId(cartId) });
+			return cart;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	addProductToCart = async (cartId, productId, quantity) => {
 		try {
 			const product = await productModel.findOne({ _id: ObjectId(productId) });
