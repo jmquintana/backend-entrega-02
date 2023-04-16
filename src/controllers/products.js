@@ -29,6 +29,15 @@ export default class ProductManager {
 		}
 	};
 
+	addManyProducts = async (arrOfProducts) => {
+		try {
+			const result = await productModel.insertMany(arrOfProducts);
+			return result;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	updateProduct = async (productId, product) => {};
 
 	deleteProduct = async (productId) => {};

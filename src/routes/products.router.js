@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 		let products = await productModel.find();
 		let limit = parseInt(req.query.limit);
 		let limitedProducts = limit ? products.slice(0, limit) : products;
-		return res.send({ status: "Success", result: limitedProducts });
+		return res.send({ status: "Success", payload: limitedProducts });
 	} catch (error) {
 		console.log(error);
 	}
@@ -67,6 +67,18 @@ router.post("/", uploader.array("thumbnails", 10), async (req, res) => {
 			error,
 		};
 		socket.io.emit("product_added", response);
+	}
+});
+
+router.post("/many", async (req, res) => {
+	try {
+		const products = req.body;
+		console.log(products);
+		const productObject = products.slice(0, 100);
+		const result = await productModel.insertMany(productObject);
+		res.send({ status: "Success", payload: result });
+	} catch (error) {
+		console.log(error);
 	}
 });
 

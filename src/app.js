@@ -7,6 +7,7 @@ import viewsRouter from "./routes/views.router.js";
 import socket from "./socket.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import { productModel } from "./models/products.model.js";
 
 dotenv.config();
 const app = express();
@@ -24,9 +25,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/", express.static(`${__dirname}/public`));
 
-mongoose.connect(
-	`mongodb+srv://${DB_USER}:${DB_PASSWORD}@codercluster.tgft5r9.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
-);
+const environment = async () => {
+	mongoose.connect(
+		`mongodb+srv://${DB_USER}:${DB_PASSWORD}@codercluster.tgft5r9.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
+	);
+
+	const products = await productModel.paginate(
+		{ category: "Blue" },
+		{ limit: 5, page: 1 }
+	);
+
+	console.log(products);
+};
+
+environment();
 
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
