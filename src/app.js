@@ -1,38 +1,32 @@
 import express from "express";
-import __dirname from "./utils.js";
 import handlebars from "express-handlebars";
-import cartsRouter from "./routes/carts.router.js";
-import productsRouter from "./routes/products.router.js";
-import viewsRouter from "./routes/views.router.js";
+import morgan from "morgan";
+import database from "./db.js";
 import socket from "./socket.js";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-import { productModel } from "./models/products.model.js";
+import productsRouter from "./routes/products.router.js";
+import cartsRouter from "./routes/carts.router.js";
+import viewsRouter from "./routes/views.router.js";
+import __dirname from "./utils.js";
 
-dotenv.config();
+// Initialization
 const app = express();
-
 const PORT = 8080;
-const DB_USER = process.env.DB_USER;
-const DB_PASSWORD = process.env.DB_PASS;
-const DB_NAME = process.env.DB_NAME;
 
+// Settings
 app.engine("handlebars", handlebars.engine());
 app.set("views", `${__dirname}/views`);
 app.set("view engine", "handlebars");
 
+// Midlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/", express.static(`${__dirname}/public`));
+app.use(morgan("dev"));
 
-const environment = async () => {
-	mongoose.connect(
-		`mongodb+srv://${DB_USER}:${DB_PASSWORD}@codercluster.tgft5r9.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
-	);
-};
+// Database connection
+database.connect();
 
-environment();
-
+// Routes
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
 app.use("/", viewsRouter);
@@ -41,4 +35,5 @@ const httpServer = app.listen(PORT, (req, res) => {
 	console.log(`Server listening on port ${PORT}`);
 });
 
+// Websocket Server
 socket.connect(httpServer);
