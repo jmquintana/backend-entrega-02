@@ -34,13 +34,55 @@ export default class CartManager {
 		}
 	};
 
-	addProductToCart = async (cartId, productId, quantity) => {
+	addProductToCart = async (productId, cartId, quantity) => {
 		try {
 			const updatedCart = await cartsModel.updateOne(
-				{ _id: cartId },
-				{ $push: { products: [{ product: productId, quantity }] } }
+				{ _id: new ObjectId(cartId) },
+				{
+					$push: { products: [{ product: new ObjectId(productId), quantity }] },
+				}
 			);
 
+			return updatedCart;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	updateCart = async (cartId, products) => {
+		try {
+			const updatedCart = await cartsModel.updateOne(
+				{ _id: new ObjectId(cartId) },
+				{
+					$set: { products: products },
+				}
+			);
+
+			return updatedCart;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	deleteCart = async (cartId) => {
+		try {
+			const deletedCart = await cartsModel.deleteOne({
+				_id: new ObjectId(cartId),
+			});
+			return deletedCart;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	deleteProductFromCart = async (productId, cartId) => {
+		try {
+			const updatedCart = await cartsModel.updateOne(
+				{ _id: new ObjectId(cartId) },
+				{
+					$pull: { products: { product: new ObjectId(productId) } },
+				}
+			);
 			return updatedCart;
 		} catch (error) {
 			console.log(error);
