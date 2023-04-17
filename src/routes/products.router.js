@@ -3,11 +3,8 @@ import { Router } from "express";
 import { uploader } from "../utils.js";
 import socket from "../socket.js";
 import { productModel } from "../models/products.model.js";
-import ProductManager from "../controllers/products.js";
 
 const router = Router();
-// const manager = new ProductManager();
-// const products = await manager.getProducts();
 
 router.get("/", async (req, res) => {
 	try {

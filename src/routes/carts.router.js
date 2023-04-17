@@ -20,11 +20,12 @@ router.get("/:cid", async (req, res) => {
 	return res.send({ status: "Success", result });
 });
 
-router.put("/:cid/product/:pid", async (req, res) => {
+router.post("/:cid/product/:pid", async (req, res) => {
 	const cartId = req.params.cid;
 	const productId = req.params.pid;
 	const result = await cartsManager.addProductToCart(productId, cartId);
 	res.send({ status: "Success", result });
+	// res.render("carts", { status: "Success", result });
 });
 
 router.put("/:cid", async (req, res) => {

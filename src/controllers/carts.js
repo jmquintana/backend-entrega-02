@@ -34,16 +34,40 @@ export default class CartManager {
 		}
 	};
 
-	addProductToCart = async (productId, cartId, quantity) => {
+	addProductToCart = async (productId, cartId, quantity = 1) => {
 		try {
-			const updatedCart = await cartsModel.updateOne(
-				{ _id: new ObjectId(cartId) },
-				{
-					$push: { products: [{ product: new ObjectId(productId), quantity }] },
-				}
+			//get product from Model
+			const product = await productModel.findOne({
+				_id: new ObjectId(productId),
+			});
+			//get cart from Model
+			const cart = await cartsModel.findOne({
+				_id: new ObjectId(cartId),
+			});
+			//check if product is already in cart
+			const productInCart = cart.products.find(
+				(product) => product.product == productId
 			);
-
-			return updatedCart;
+			//if product is already in cart, update quantity
+			if (productInCart) {
+				productInCart.quantity += quantity;
+				//update cart
+				const updatedCart = await this.updateCart(cartId, cart.products);
+				return updatedCart;
+			}
+			//if product is not in cart, add it
+			else {
+				//create new product object
+				const newProduct = {
+					product: product._id,
+					quantity: quantity,
+				};
+				//add product to cart
+				cart.products.push(newProduct);
+				//update cart
+				const updatedCart = await this.updateCart(cartId, cart.products);
+				return updatedCart;
+			}
 		} catch (error) {
 			console.log(error);
 		}

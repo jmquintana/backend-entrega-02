@@ -226,6 +226,22 @@ body {
 	color: #fff;
 }
 
+.add-btn {
+	border: 1px solid transparent;
+	background-color: #fff;
+	background-color: var(--B-color);
+	text-align: center;
+}
+
+.add-btn:active {
+	filter: brightness(90%);
+}
+
+.add-btn:hover {
+	color: var(--B-color);
+	color: #fff;
+}
+
 .open-modal-btn:hover {
 	filter: brightness(120%);
 	cursor: pointer;
@@ -539,9 +555,17 @@ body {
 	transition: all ease 0.25s;
 }
 
+.add-btn:hover {
+	filter: brightness(120%);
+}
+
 .prev-btn:hover,
 .next-btn:hover {
 	filter: brightness(140%);
+}
+
+.add-btn:active {
+	filter: brightness(90%);
 }
 
 .prev-btn:active,
@@ -549,8 +573,10 @@ body {
 	filter: brightness(90%);
 }
 
-.btn a {
+.btn a,
+.add-btn {
 	text-decoration: none;
+	text-align: center;
 	color: #eee;
 }
 

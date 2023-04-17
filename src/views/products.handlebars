@@ -6,7 +6,7 @@
 		<div class="list-container">
 			<div class="product-list">
 				{{#each products}}
-					<div id={{this._id}} class="product-item-full">
+					<div id="pid-{{this._id}}" class="product-item-full">
 						<div class="product-item-text">
 							<div class="first row">
 								<div class="item-title">
@@ -47,7 +47,20 @@
 								<div class="no-image">Sin imágenes</div>
 							{{/each}}
 						</div>
-						{{! <div class="delete-btn btn">Borrar</div> }}
+						<form
+							action="api/carts/643c5e9e7c350807cef915d7/product/{{this._id}}"
+							method="POST"
+							id={{this._id}}
+							class="add-form"
+							enctype="multipart/form-data"
+						>
+							<button
+								type="submit"
+								form={{this._id}}
+								class="add-btn btn"
+								name="submit"
+							>Agregar</button>
+						</form>
 					</div>
 				{{/each}}
 			</div>
@@ -62,20 +75,21 @@
 			{{/if}}
 			<div class="page-index">
 				<p>
-					Page
+					Página
 					<b>{{page}}</b>
-					of
+					de
 					<b>{{totalPages}}</b>
 				</p>
 			</div>
 
 			{{#if hasNextPage}}
 				<div class="btn next-btn">
-					<a href="?page={{nextPage}}">Next</a>
+					<a href="?page={{nextPage}}">Prox</a>
 				</div>
 			{{else}}
-				<div class="invisible-btn">Next</div>
+				<div class="invisible-btn">Prox</div>
 			{{/if}}
 		</div>
 	</div>
 </div>
+<script src="/js/products.js"></script>

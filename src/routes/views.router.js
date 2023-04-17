@@ -1,8 +1,9 @@
 import { Router } from "express";
-import ProductManager from "../controllers/products.js";
 import { productModel } from "../models/products.model.js";
+import ProductManager from "../controllers/products.js";
+import CartsManager from "../controllers/carts.js";
 
-// const productManager = new ProductManager();
+const cartsManager = new CartsManager();
 const router = Router();
 
 router.get("/", async (req, res) => {
@@ -34,6 +35,13 @@ router.get("/", async (req, res) => {
 		totalDocs,
 		totalPages,
 	});
+});
+
+router.post("/:cid/product/:pid", async (req, res) => {
+	const cartId = req.params.cid;
+	const productId = req.params.pid;
+	const result = await cartsManager.addProductToCart(productId, cartId);
+	res.render("carts", { status: "Success", result });
 });
 
 router.get("/realtimeproducts", async (req, res) => {
