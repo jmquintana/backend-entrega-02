@@ -27,13 +27,7 @@
 				{{/each}}
 			</div>
 			<div class="product-card-footer">
-				<form
-					action="api/carts/643c5e9e7c350807cef915d7/product/{{this._id}}"
-					method="POST"
-					id={{this._id}}
-					class="add-form"
-					enctype="multipart/form-data"
-				>
+				<form id={{this._id}} class="add-form">
 					<button type="submit" form={{this._id}} class="add-btn btn">
 						Agregar
 					</button>

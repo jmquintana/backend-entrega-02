@@ -8,7 +8,6 @@ forms.forEach((form) => {
 	form.addEventListener("submit", (e) => {
 		e.preventDefault();
 		const productId = e.target.id;
-		console.log(cartId, productId);
 		try {
 			fetch(`/api/carts/${cartId}/product/${productId}`, {
 				method: "POST",
