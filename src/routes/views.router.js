@@ -4,6 +4,7 @@ import ProductManager from "../controllers/products.js";
 import CartsManager from "../controllers/carts.js";
 
 const cartsManager = new CartsManager();
+const productsManager = new ProductManager();
 const router = Router();
 
 router.get("/", async (req, res) => {
@@ -47,6 +48,12 @@ router.post("/:cid/product/:pid", async (req, res) => {
 router.get("/realtimeproducts", async (req, res) => {
 	const products = await productModel.find().lean();
 	res.render("realTimeProducts", { products });
+});
+
+router.get("/product/:pid", async (req, res) => {
+	const productId = req.params.pid;
+	const product = await productsManager.getProductById(productId);
+	res.render("product", product[0]);
 });
 
 export default router;

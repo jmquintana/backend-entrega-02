@@ -1,0 +1,45 @@
+<div class="main-container" id="custom-target">
+	<div class="product-card-main-container">
+		{{! card with all information of the product }}
+		<div class="product-card">
+			<div class="product-card-header">
+				<div class="product-card-details">
+					<div class="product-card-title">{{this.title}}</div>
+					<div class="product-card-category"> {{this.category}}</div>
+				</div>
+				<div class="product-card-code">Cod: {{this.code}}</div>
+			</div>
+			<div class="product-card-body">
+				<div class="product-card-description">{{this.description}}</div>
+				<div class="product-card-other-info">
+					<div class="product-card-price">$ {{this.price}}</div>
+					<div class="product-card-stock">Stock: {{this.stock}} unidades</div>
+				</div>
+			</div>
+			<div class="product-card-thumbnails">
+				{{! thumbnails of the product }}
+				{{#each this.thumbnails}}
+					<div class="product-card-thumbnail">
+						<img src="{{this}}" alt="" />
+					</div>
+				{{else}}
+					<div class="no-image">Sin imágenes</div>
+				{{/each}}
+			</div>
+			<div class="product-card-footer">
+				<form
+					action="api/carts/643c5e9e7c350807cef915d7/product/{{this._id}}"
+					method="POST"
+					id={{this._id}}
+					class="add-form"
+					enctype="multipart/form-data"
+				>
+					<button type="submit" form={{this._id}} class="add-btn btn">
+						Agregar
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="/js/product.js"></script>

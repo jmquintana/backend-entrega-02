@@ -1,0 +1,141 @@
+:root {
+	--A-color: #00629b;
+	--B-color: #00843d;
+	--C-color: #64a70b;
+	--D-color: #63666a;
+	--E-color: #69b3e7;
+	--F-color: #93328e;
+	--G-color: #ea7600;
+	--H-color: #f1c400;
+	--I-color: #8e8c13;
+	--J-color: #003c71;
+	--K-color: #5d2a2c;
+	--L-color: #59315f;
+	--M-color: #16172b;
+	--N-color: #ac0006;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Poppins", sans-serif;
+}
+
+.product-card-main-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.product-card {
+	max-width: 25rem;
+	background: #eee;
+	border-radius: 1rem;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	transition: all 0.3s ease;
+}
+
+.product-card-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	background: var(--A-color);
+}
+
+.product-card-details {
+	margin: 1rem;
+}
+
+.product-card-title {
+	color: #eee;
+	font-weight: 700;
+	font-size: 1.5rem;
+}
+
+.product-card-category {
+	font-size: small;
+	color: #aaa;
+}
+
+.product-card-code {
+	display: flex;
+	/* height: 100%; */
+	align-items: baseline;
+	font-size: small;
+	margin: 1rem;
+	color: #aaa;
+}
+
+.product-card-body {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: normal;
+	padding: 1rem;
+	min-height: 10rem;
+}
+
+.product-card-description {
+	font-size: small;
+	margin-bottom: 1rem;
+}
+
+.product-card-other-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: normal;
+	align-items: normal;
+	width: 100%;
+}
+
+.product-card-price {
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: #000;
+}
+
+.product-card-stock {
+	font-size: small;
+	color: #aaa;
+}
+
+.product-card-thumbnails {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	padding: 1rem 0;
+	background: #fff;
+	border-top: 1px solid #eee;
+	height: 7rem;
+	width: 25rem;
+}
+
+.product-card-thumbnail {
+	width: 5rem;
+	height: 5rem;
+	background: #eee;
+	border-radius: 5px;
+	overflow: hidden;
+	object-fit: cover;
+}
+
+.product-card-thumbnail img {
+	width: 5rem;
+}
+
+.product-card-footer {
+	padding: 0.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
