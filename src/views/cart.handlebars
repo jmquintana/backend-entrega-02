@@ -1,5 +1,47 @@
 <div class="main-container" id="custom-target">
 	<div class="cart-main-container">
+		{{! Visual of the current cart: { _id, products: [{ product, price, quantity}] }   /}}
+
+		{{! If the cart is empty, show this: }}
+		{{#if cartIsEmpty}}
+			<div class="cart-empty">
+				<h1>Cart is empty</h1>
+				<p>Go to the
+					<a href="/products">products page</a>
+					to add items to your cart.</p>
+			</div>
+		{{/if}}
+
+		{{! If the cart is not empty, show this: }}
+		{{#unless cartIsEmpty}}
+			<div class="cart-not-empty">
+				<h1>Cart</h1>
+				<div class="cart-products">
+					{{#each products}}
+						<div class="cart-product">
+							<div class="cart-product-image">
+								<img src="{{this.product.image}}" alt="{{this.product.name}}" />
+							</div>
+							<div class="cart-product-info">
+								<h2>{{this.product.name}}</h2>
+								<p>{{this.product.description}}</p>
+								<p>Price: {{this.product.price}}</p>
+								<p>Quantity: {{this.quantity}}</p>
+								{{!-- <p>Total: {{this.product.price * this.quantity}}</p> --}}
+								<button
+									class="btn btn-danger"
+									data-id="{{this.product._id}}"
+								>Remove</button>
+							</div>
+						</div>
+					{{/each}}
+				</div>
+				<div class="cart-total">
+					<h2>Total: {{total}}</h2>
+				</div>
+			</div>
+		{{/unless}}
 
 	</div>
 </div>
+<script src="/js/cart.js"></script>

@@ -56,4 +56,11 @@ router.get("/product/:pid", async (req, res) => {
 	res.render("product", product[0]);
 });
 
+router.get("/cart/:cid", async (req, res) => {
+	const cartId = req.params.cid;
+	const cart = await cartsManager.getCartById(cartId);
+	console.log(cart);
+	res.render("cart", cart);
+});
+
 export default router;
