@@ -20,14 +20,19 @@
 					{{#each products}}
 						<div class="cart-product">
 							<div class="cart-product-image">
-								<img src="{{this.product.image}}" alt="{{this.product.name}}" />
+								<img
+									src="{{this.product.image}}"
+									alt="{{this.product.title}}"
+								/>
 							</div>
 							<div class="cart-product-info">
-								<h2>{{this.product.name}}</h2>
+								<h2>{{this.product.title}}</h2>
 								<p>{{this.product.description}}</p>
 								<p>Price: {{this.product.price}}</p>
 								<p>Quantity: {{this.quantity}}</p>
-								{{!-- <p>Total: {{this.product.price * this.quantity}}</p> --}}
+								{{#if this.product.price}}
+									{{!-- <p>Total: {{this.product.price * this.quantity}}</p> --}}
+								{{/if}}
 								<button
 									class="btn btn-danger"
 									data-id="{{this.product._id}}"

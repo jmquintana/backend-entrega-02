@@ -27,7 +27,9 @@ export default class CartManager {
 		try {
 			const cart = await cartsModel
 				.findOne({ _id: new ObjectId(cartId) })
+				.lean()
 				.populate("products");
+
 			return cart;
 		} catch (error) {
 			console.log(error);
