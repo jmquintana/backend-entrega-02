@@ -1,0 +1,126 @@
+:root {
+	--A-color: #00629b;
+	--B-color: #00843d;
+	--C-color: #64a70b;
+	--D-color: #63666a;
+	--E-color: #69b3e7;
+	--F-color: #93328e;
+	--G-color: #ea7600;
+	--H-color: #f1c400;
+	--I-color: #8e8c13;
+	--J-color: #003c71;
+	--K-color: #5d2a2c;
+	--L-color: #59315f;
+	--M-color: #16172b;
+	--N-color: #ac0006;
+}
+
+.cart-main-container {
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+.cart-header {
+	display: flex;
+	align-items: center;
+	margin: 1rem 0.6rem 1rem 0.6rem;
+	color: #15172b;
+	font-family: sans-serif;
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
+.product-card {
+	height: auto;
+}
+
+.product-card-body {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.cart-empty {
+	text-align: center;
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+.cart-not-empty {
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+.cart-products {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.product-card-code {
+	font-size: small;
+	color: #aaa;
+}
+
+.product-card-quantity {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0.5rem 0;
+}
+
+.decrement-btn {
+	border: 1px solid transparent;
+	font-size: 2rem;
+	border: 1px solid transparent;
+	background-color: var(--N-color);
+	color: #fff;
+}
+
+.decrement-btn:hover {
+	filter: brightness(120%);
+}
+
+.decrement-btn:active {
+	filter: brightness(90%);
+}
+
+.product-card-quantity-value {
+	font-size: 1.5rem;
+	font-weight: 600;
+	color: #15172b;
+	margin: 0 0.5rem;
+}
+
+.increment-btn {
+	font-size: 2rem;
+	border: 1px solid transparent;
+	background-color: var(--B-color);
+	color: #fff;
+	text-align: center;
+	z-index: 21;
+}
+
+.increment-btn:active {
+	filter: brightness(90%);
+}
+
+.increment-btn:hover {
+	filter: brightness(120%);
+}
+
+.cart-total-container {
+	max-width: 25rem;
+	background: #eee;
+	border-radius: 1rem;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	transition: all 0.3s ease;
+}
+
+.cart-total {
+	margin: 1rem;
+}

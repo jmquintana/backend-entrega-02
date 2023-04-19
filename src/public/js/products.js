@@ -1,6 +1,6 @@
 console.log("products.js: loaded");
 
-const cartId = "643c5e9e7c350807cef915d7";
+const cartId = "643e1a3bcd4d41b659f78f79";
 const forms = document.querySelectorAll(".add-form");
 const products = document.querySelectorAll(".product-item-full");
 

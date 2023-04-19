@@ -82,7 +82,7 @@ body {
 	justify-content: space-between;
 	align-items: normal;
 	padding: 1rem;
-	min-height: 10rem;
+	/* min-height: 10rem; */
 }
 
 .product-card-description {

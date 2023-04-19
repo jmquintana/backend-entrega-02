@@ -27,8 +27,8 @@ export default class CartManager {
 		try {
 			const cart = await cartsModel
 				.findOne({ _id: new ObjectId(cartId) })
-				.lean()
-				.populate("products");
+				.populate("products.product")
+				.lean();
 
 			return cart;
 		} catch (error) {
@@ -42,10 +42,12 @@ export default class CartManager {
 			const product = await productModel.findOne({
 				_id: new ObjectId(productId),
 			});
+			if (!product) throw new Error("Product not found");
 			//get cart from Model
 			const cart = await cartsModel.findOne({
 				_id: new ObjectId(cartId),
 			});
+			if (!cart) throw new Error("Cart not found");
 			//check if product is already in cart
 			const productInCart = cart.products.find(
 				(product) => product.product == productId
@@ -61,7 +63,7 @@ export default class CartManager {
 			else {
 				//create new product object
 				const newProduct = {
-					product: product._id,
+					product: new ObjectId(product.productId),
 					quantity: quantity,
 				};
 				//add product to cart
