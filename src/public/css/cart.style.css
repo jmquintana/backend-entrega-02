@@ -164,7 +164,7 @@
 	filter: brightness(90%);
 }
 
-.cart-total-container {
+.cart-total-price-container {
 	background: #eee;
 	border-radius: 1rem;
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -175,7 +175,16 @@
 	margin-bottom: 1rem;
 }
 
-.cart-total {
+.cart-total-price-label {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: #000;
+}
+
+.cart-total-price-value {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

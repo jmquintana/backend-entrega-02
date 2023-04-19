@@ -57,6 +57,9 @@
 									</button>
 								</form>
 							</div>
+							<div class="subTotal">
+								Subtotal: ${{this.subTotal}}
+							</div>
 							<form id={{this.product._id}} class="remove-products-form">
 								<button
 									type="submit"
@@ -79,8 +82,9 @@
 			{{/each}}
 
 		</div>
-		<div class="cart-total-container">
-			<div class="cart-total"> Total: $ {{total}} </div>
+		<div class="cart-total-price-container">
+			<div class="cart-total-price-label"> Total: </div>
+			<div class="cart-total-price-value"> ${{totalPrice}} </div>
 		</div>
 	</div>
 </div>

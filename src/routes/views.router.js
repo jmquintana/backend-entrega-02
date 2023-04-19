@@ -64,7 +64,21 @@ router.get("/cart/:cid", async (req, res) => {
 		console.log(cart);
 		const cartIsEmpty = !cart.products?.length;
 		const { products } = cart;
-		res.render("cart", { cart, cartId, cartIsEmpty, products });
+
+		// Calculate sub total price of each product
+		products.forEach((product) => {
+			product.subTotal = (
+				product.product.price * product.quantity
+			).toLocaleString("es-AR");
+		});
+		// Calculate total price of all products
+		const totalPrice = products
+			.reduce((acc, product) => {
+				return acc + parseFloat(product.subTotal);
+			}, 0)
+			.toLocaleString("es-AR");
+		console.log(totalPrice);
+		res.render("cart", { cart, cartId, cartIsEmpty, products, totalPrice });
 	}
 });
 
