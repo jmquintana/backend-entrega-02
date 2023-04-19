@@ -2,91 +2,88 @@
 	<div class="cart-main-container">
 		{{! structure of the current cart with all corresponding classes: the 'cart' structure is { _id, products: [{ product, price, quantity}] } and each 'product' is like { title, category, thumbnails, price }  /}}
 
-		<div class="cart-container">
-			<div class="cart-header-container">
-				<div class="cart-header">Carrito</div>
-			</div>
-			<div class="cart-products">
-				{{! products }}
-				{{#each products}}
-					<div class="product-card">
-						<div class="product-card-header">
-							<div class="product-card-details">
-								<div class="product-card-title">{{this.product.title}}</div>
-								<div class="product-card-category">
-									{{this.product.category}}
-								</div>
-							</div>
-							<div class="product-card-details">
-								<div class="product-card-price">
-									${{this.product.price}}<sup>c/u</sup>
-								</div>
-								<div class="product-card-category">Cod:
-									{{this.product.code}}</div>
+		<div class="cart-header-container">
+			<div class="cart-header">Carrito</div>
+		</div>
+		<div class="cart-products">
+			{{! products }}
+			{{#each products}}
+				<div class="product-card">
+					<div class="product-card-header">
+						<div class="product-card-details">
+							<div class="product-card-title">{{this.product.title}}</div>
+							<div class="product-card-category">
+								{{this.product.category}}
 							</div>
 						</div>
-						<div class="product-card-thumbnails">
-							{{! thumbnails of the product }}
-							{{#each this.product.thumbnails}}
-								<div class="product-card-thumbnail">
-									<img src="{{this}}" alt="" />
-								</div>
-							{{else}}
-								<div class="no-image">Sin imágenes</div>
-							{{/each}}
+						<div class="product-card-details">
+							<div class="product-card-price">
+								${{this.product.price}}<sup>c/u</sup>
+							</div>
+							<div class="product-card-category">Cod:
+								{{this.product.code}}</div>
 						</div>
-						<div class="product-card-body">
-							<div class="product-card-quantity">
-								<div class="product-card-quantity-control">
-									<form id={{this.product._id}} class="decrement-form">
-										<button
-											type="submit"
-											form={{this.product._id}}
-											class="decrement-btn btn"
-										>
-											<i class="fas fa-minus"></i>
-										</button>
-									</form>
-									<div class="product-card-quantity-value">
-										{{this.quantity}}
-									</div>
-									<form id={{this.product._id}} class="increment-form">
-										<button
-											type="submit"
-											form={{this.product._id}}
-											class="increment-btn btn"
-										>
-											<i class="fas fa-plus"></i>
-										</button>
-									</form>
-								</div>
-								<form id={{this.product._id}} class="remove-form">
+					</div>
+					<div class="product-card-thumbnails">
+						{{! thumbnails of the product }}
+						{{#each this.product.thumbnails}}
+							<div class="product-card-thumbnail">
+								<img src="{{this}}" alt="" />
+							</div>
+						{{else}}
+							<div class="no-image">Sin imágenes</div>
+						{{/each}}
+					</div>
+					<div class="product-card-body">
+						<div class="product-card-quantity">
+							<div class="product-card-quantity-control">
+								<form id={{this.product._id}} class="decrement-form">
 									<button
 										type="submit"
 										form={{this.product._id}}
-										class="remove-btn btn"
+										class="decrement-btn btn"
 									>
-										<i class="fas fa-trash"></i>
+										<i class="fas fa-minus"></i>
+									</button>
+								</form>
+								<div class="product-card-quantity-value">
+									{{this.quantity}}
+								</div>
+								<form id={{this.product._id}} class="increment-form">
+									<button
+										type="submit"
+										form={{this.product._id}}
+										class="increment-btn btn"
+									>
+										<i class="fas fa-plus"></i>
 									</button>
 								</form>
 							</div>
-						</div>
-						<div class="product-card-footer">
-							<div class="product-card-total">
-								{{!-- Total: ${{this.product.price * this.quantity}} --}}
-							</div>
+							<form id={{this.product._id}} class="remove-products-form">
+								<button
+									type="submit"
+									form={{this.product._id}}
+									class="remove-products-btn btn"
+								>
+									<i class="fas fa-trash"></i>
+								</button>
+							</form>
 						</div>
 					</div>
-				{{else}}
-					<div class="no-products">No hay productos en el carrito</div>
-				{{/each}}
+					<div class="product-card-footer">
+						<div class="product-card-total">
+							{{!-- Total: ${{this.product.price * this.quantity}} --}}
+						</div>
+					</div>
+				</div>
+			{{else}}
+				<div class="no-products">No hay productos en el carrito</div>
+			{{/each}}
 
-			</div>
-			<div class="cart-total-container">
-				<div class="cart-total"> Total: $ {{total}} </div>
-			</div>
 		</div>
-
+		<div class="cart-total-container">
+			<div class="cart-total"> Total: $ {{total}} </div>
+		</div>
 	</div>
 </div>
 <script src="/js/cart.js"></script>

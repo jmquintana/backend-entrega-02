@@ -21,10 +21,6 @@
 	box-sizing: border-box;
 }
 
-body {
-	font-family: "Poppins", sans-serif;
-}
-
 .product-card-main-container {
 	display: flex;
 	justify-content: center;

@@ -63,7 +63,7 @@ export default class CartManager {
 			else {
 				//create new product object
 				const newProduct = {
-					product: new ObjectId(product.productId),
+					product: new ObjectId(productId),
 					quantity: quantity,
 				};
 				//add product to cart
