@@ -1,12 +1,10 @@
-<div class="main-container" id="custom-target">
+<div class="main-container">
+	<div id="custom-target"></div>
 	<div class="cart-main-container">
-		{{! structure of the current cart with all corresponding classes: the 'cart' structure is { _id, products: [{ product, price, quantity}] } and each 'product' is like { title, category, thumbnails, price }  /}}
-
 		<div class="cart-header-container">
 			<div class="cart-header">Carrito</div>
 		</div>
-		<div class="cart-products">
-			{{! products }}
+		<div class="cart-products-container">
 			{{#each products}}
 				<div class="product-card">
 					<div class="product-card-header">
@@ -41,7 +39,7 @@
 									<button
 										type="submit"
 										form={{this.product._id}}
-										class="decrement-btn btn"
+										class="decrement-btn circle-btn"
 									>
 										<i class="fas fa-minus"></i>
 									</button>
@@ -53,7 +51,7 @@
 									<button
 										type="submit"
 										form={{this.product._id}}
-										class="increment-btn btn"
+										class="increment-btn circle-btn"
 									>
 										<i class="fas fa-plus"></i>
 									</button>

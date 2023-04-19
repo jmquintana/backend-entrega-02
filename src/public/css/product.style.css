@@ -29,7 +29,7 @@
 }
 
 .product-card {
-	max-width: 25rem;
+	width: 25rem;
 	background: #eee;
 	border-radius: 1rem;
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -45,18 +45,23 @@
 .product-card-header {
 	display: flex;
 	justify-content: space-between;
-	align-items: flex-end;
+	align-items: center;
+	width: 100%;
 	background: var(--A-color);
 }
 
 .product-card-details {
 	margin: 1rem;
+	max-width: 55%;
 }
 
 .product-card-title {
 	color: #eee;
 	font-weight: 700;
 	font-size: 1.5rem;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 .product-card-category {

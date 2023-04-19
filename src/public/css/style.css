@@ -33,14 +33,14 @@ body {
 }
 
 #custom-target {
-	width: 100%;
+	position: fixed;
+	width: 100vw;
 	height: 100vh;
 }
 
 .main-container {
 	display: flex;
 	justify-content: center;
-	width: 100vh;
 }
 
 .products-main-container {
