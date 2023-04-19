@@ -16,8 +16,16 @@
 }
 
 .cart-main-container {
-	margin-top: 100px;
-	margin-bottom: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.cart-header-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .cart-header {
@@ -64,8 +72,14 @@
 .product-card-quantity {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	margin: 0.5rem 0;
+}
+
+.product-card-quantity-control {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .decrement-btn {
@@ -119,8 +133,14 @@
 	flex-direction: column;
 	justify-content: space-between;
 	transition: all 0.3s ease;
+	padding: 1rem;
 }
 
 .cart-total {
-	margin: 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: #000;
 }

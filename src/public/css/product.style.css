@@ -43,6 +43,7 @@ body {
 	flex-direction: column;
 	justify-content: space-between;
 	transition: all 0.3s ease;
+	margin-bottom: 1rem;
 }
 
 .product-card-header {
