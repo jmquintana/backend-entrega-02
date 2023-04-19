@@ -50,7 +50,7 @@ export default class CartManager {
 			if (!cart) throw new Error("Cart not found");
 			//check if product is already in cart
 			const productInCart = cart.products.find(
-				(product) => product.product == productId
+				(product) => product.product == new ObjectId(productId)
 			);
 			//if product is already in cart, update quantity
 			if (productInCart) {
