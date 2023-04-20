@@ -56,28 +56,35 @@ router.get("/product/:pid", async (req, res) => {
 	res.render("product", product[0]);
 });
 
+// update product quantity in cart
+router.put("/:cid", async (req, res) => {
+	const cartId = req.params.cid;
+	const productId = req.body.productId;
+	const newQuantity = req.body.newQuantity;
+	const result = await cartsManager.editProductQuantity(
+		productId,
+		cartId,
+		newQuantity
+	);
+	res.send({ status: "Success", result });
+});
+
 router.get("/cart/:cid", async (req, res) => {
 	const cartId = req.params.cid;
 	// const carts = carts[0];
 	const cart = await cartsManager.getCartById(cartId);
 	if (cart) {
-		console.log(cart);
 		const cartIsEmpty = !cart.products?.length;
 		const { products } = cart;
 
 		// Calculate sub total price of each product
 		products.forEach((product) => {
-			product.subTotal = (
-				product.product.price * product.quantity
-			).toLocaleString("es-AR");
+			product.subTotal = product.product.price * product.quantity;
 		});
 		// Calculate total price of all products
-		const totalPrice = products
-			.reduce((acc, product) => {
-				return acc + parseFloat(product.subTotal);
-			}, 0)
-			.toLocaleString("es-AR");
-		console.log(totalPrice);
+		const totalPrice = products.reduce((acc, product) => {
+			return acc + parseFloat(product.subTotal);
+		}, 0);
 		res.render("cart", { cart, cartId, cartIsEmpty, products, totalPrice });
 	}
 });
