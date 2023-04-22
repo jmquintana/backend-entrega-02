@@ -5,9 +5,9 @@ const forms = document.querySelectorAll(".add-form");
 const products = document.querySelectorAll(".product-item-full");
 
 forms.forEach((form) => {
-	form.addEventListener("submit", (e) => {
+	form.addEventListener("click", (e) => {
 		e.preventDefault();
-		const productId = e.target.id;
+		const productId = e.target.closest(".add-form").id;
 		try {
 			fetch(`/api/carts/${cartId}/product/${productId}`, {
 				method: "POST",
@@ -27,11 +27,10 @@ forms.forEach((form) => {
 
 products.forEach((product) => {
 	product.addEventListener("click", (e) => {
-		e.stopPropagation();
 		e.preventDefault();
 		const target = e.target;
+		if (target.classList.contains("add-btn")) return;
 		const productId = target.querySelector(".add-form").id;
-		console.log(productId);
 		if (!productId) return;
 		try {
 			window.location.href = `/product/${productId}`;
